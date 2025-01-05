@@ -1,0 +1,22 @@
+# Node modules directory
+node_modules/
+
+# Environment files
+.env
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Build directory (optional)
+dist/
+
+# Temporary files
+*.swp

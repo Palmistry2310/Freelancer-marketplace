@@ -1,11 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>create a new job</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post a Job - earnwave</title>
+    <link rel="stylesheet" href="/public/createJob.css" />
+  </head>
+  <body>
+    <div class="wave-bg"></div>
+
+    <nav class="nav">
+      <a href="/" class="logo">earnwave</a>
+      <div class="nav-links">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/jobs" class="nav-link">Jobs</a>
+        <a href="/post-job" class="nav-link">Post Job</a>
+        <a href="/signup" class="nav-link sign-up">Sign up</a>
+      </div>
+    </nav>
+
+    <main class="container">
+      <h1 class="page-title">Post a New Job</h1>
+      <p class="page-subtitle">
+        Create a job posting to find the perfect talent for your project
+      </p>
+
+      <form action="/jobs/create" method="POST" class="form-card" id="form">
+        <div class="form-group">
+          <label for="title">Job Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            required
+            placeholder="e.g. Senior Frontend Developer"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Job Description</label>
+          <textarea
+            id="description"
+            name="desc"
+            required
+            placeholder="Describe the job requirements, responsibilities, and qualifications"
+          ></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="budget">Budget</label>
+            <input
+              type="number"
+              id="budget"
+              name="budget"
+              required
+              placeholder="Enter amount"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="deadline">Deadline</label>
+            <input type="date" id="deadline" name="deadline" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="skills-input">Required Skills</label>
+          <input type="text" id="skills-input" placeholder="Type a skill" name="skillsRequired" />
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn-primary">Post Job</button>
+        </div>
+      </form>
+
+    </main>
+    <script>
+        document.getElementById("form").addEventListener("submit",async(event)=>{
+            event.preventDefault()
+            const data={
+                title:document.getElementById("title").value,
+                desc:document.getElementById("description").value,
+                budget:document.getElementById("budget").value,
+                deadline:document.getElementById("deadline").value,
+                skillsRequired:document.getElementById("skills-input").value
+            }
+
+            const response= await fetch("/jobs/create",{
+                method:"Post",
+                headers:{"content-type":"application/json"},
+                body:JSON.stringify(data)
+            })
+
+            const result= await response.json()
+            if(response==200){
+                alert(result.message)
+            }else{
+                alert(result.message)
+            }
+
+        })
+    </script>
+  </body>
 </html>

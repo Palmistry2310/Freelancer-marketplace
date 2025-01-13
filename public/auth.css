@@ -6,8 +6,8 @@
 }
 
 body {
-    /* background-color: #f8fafc; */
-    background-color: #e2e8f0;
+    background-color: #f8fafc;
+    /* background-color: #e2e8f0; */
     min-height: 100vh;
     color: #2F4858;
     display: flex;
@@ -132,16 +132,4 @@ select:focus {
     color: #2F4858;
     text-decoration: none;
     font-weight: 500;
-}
-
-.wave-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    background: 
-        radial-gradient(50% 50% at 50% 50%, rgba(247, 249, 251, 0.8) 0%, rgba(247, 249, 251, 0.4) 100%),
-        url("data:image/svg+xml,%3Csvg width='1440' height='1024' viewBox='0 0 1440 1024' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-164 726.5C-68 726.5 -68 850.5 28 850.5C124 850.5 124 726.5 220 726.5C316 726.5 316 850.5 412 850.5C508 850.5 508 726.5 604 726.5C700 726.5 700 850.5 796 850.5C892 850.5 892 726.5 988 726.5C1084 726.5 1084 850.5 1180 850.5C1276 850.5 1276 726.5 1372 726.5' stroke='%23E2E8F0' stroke-width='2'/%3E%3C/svg%3E");
 }

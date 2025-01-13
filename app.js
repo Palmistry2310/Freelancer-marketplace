@@ -17,8 +17,10 @@ const app=express()
 
 //middlewares
 app.use(express.urlencoded({extended:true}))
-app.use(express.static("public"))
+app.use(express.json())
+
 app.set("view engine","ejs")
+app.use(express.static(__dirname))
 
 //routes
 app.get("/",(req,res)=>{

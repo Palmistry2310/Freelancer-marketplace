@@ -1,0 +1,223 @@
+:root {
+    --primary-color: #2D3B4E;
+    --secondary-color: #F5F7FA;
+    --accent-color: #007AFF;
+    --background-color: #F8FAFC;
+    --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.background {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* .curved-shape {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+} */
+
+.curved-shape {
+    position: absolute;
+    background-color: #e2e8f0;
+    width: 75%;
+    height: 100%;
+    z-index: -1;
+}
+
+.curved-shape.left {
+    left: -50%;
+    border-radius: 0 100% 0 0;
+}
+
+.curved-shape.right {
+    right: -50%;
+    border-radius: 100% 0 0 0;
+}
+
+.navbar {
+    padding: 1.5rem 2rem;
+    background: transparent;
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 0.9375rem;
+}
+
+.sign-up-btn {
+    background: white;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: 1.25rem;
+    font-size: 0.9375rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 4.5rem;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #2D3B4E 0%, #3D4B5E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 1.125rem;
+    color: #64748B;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.5;
+}
+
+.progress-dots {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: #E2E8F0;
+    border-radius: 50%;
+}
+
+.dot.active {
+    background: var(--accent-color);
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.card {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+}
+
+/* Earnings Card */
+.earnings-card h3 {
+    color: #64748B;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.amount {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.payout-info {
+    color: #64748B;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+}
+
+#earningsGraph {
+    width: 100%;
+    height: 100px;
+}
+
+/* Sources Card */
+.sources-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.sources-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+
+
+@media (max-width: 1024px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+}

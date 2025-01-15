@@ -2,7 +2,7 @@ const Job= require("../models/Job")
 
 exports.getAllJobs= async(req,res)=>{
 
-        const jobs= await Job.find({},{_id:0,__v:0})
+        const jobs= await Job.find()
         res.render("job/jobList",{jobs})
     
 

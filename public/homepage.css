@@ -88,7 +88,19 @@ body {
     background: white;
     border: none;
     padding: 0.625rem 1.25rem;
-    border-radius: 1.25rem;
+    border-radius: 1rem;
+    font-size: 0.9375rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-right: 10px;
+}
+
+.login-btn {
+    background: white;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: 1rem;
     font-size: 0.9375rem;
     color: var(--primary-color);
     cursor: pointer;

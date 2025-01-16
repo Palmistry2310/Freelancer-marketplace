@@ -45,6 +45,7 @@ body {
     text-decoration: none;
     color: #232323;
     font-size: 20px;
+    font-weight: 800;
 }
 
 .nav-links {
@@ -66,7 +67,7 @@ body {
     background: white;
     border: none;
     padding: 0.625rem 1.25rem;
-    border-radius:50px;
+    border-radius: 50px;
     font-size: 0.9375rem;
     color: var(--primary-color);
     cursor: pointer;
@@ -75,7 +76,7 @@ body {
     transition: all ease-in-out 0.1s;
 }
 
-.sign-up-btn:hover{
+.sign-up-btn:hover {
     background-color: #e2e8f0;
 }
 
@@ -83,7 +84,7 @@ body {
     background: white;
     border: none;
     padding: 0.625rem 1.25rem;
-    border-radius:50px;
+    border-radius: 50px;
     font-size: 0.9375rem;
     color: var(--primary-color);
     cursor: pointer;
@@ -96,7 +97,7 @@ body {
     background: rgb(248, 54, 54);
     border: none;
     padding: 0.625rem 1.25rem;
-    border-radius:50px;
+    border-radius: 50px;
     font-size: 0.9375rem;
     color: white;
     cursor: pointer;
@@ -105,6 +106,6 @@ body {
     text-decoration: none;
 }
 
-.login-btn:hover{
+.login-btn:hover {
     background-color: #e2e8f0;
 }

@@ -22,28 +22,59 @@
 
       <div class="jobs-grid">
         <% jobs.forEach(job => { %>
-        <div class="job-card">
-          <div class="job-header">
-            <h2><%= job.title %></h2>
-            <span class="budget">₹<%= job.budget %></span>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="header-left">
+              <div class="icon">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rmZNfINKNpvo7E0ukBaj3gu5O3oWdd.png"
+                  alt="Company Logo"
+                />
+              </div>
+              <div class="title-section">
+                <h1><%= job.title %></h1>
+                <span class="time">
+                  <%= (function() {
+                    const diffInSeconds = (new Date().getTime() - new Date(job.updatedAt).getTime()) / 1000;
+                    if (diffInSeconds < 60) return Math.floor(diffInSeconds) + ' seconds ago';
+                    if (diffInSeconds < 3600) return Math.floor(diffInSeconds / 60) + ' minutes ago';
+                    if (diffInSeconds < 86400) return Math.floor(diffInSeconds / 3600) + ' hours ago';
+                    return Math.floor(diffInSeconds / 86400) + ' days ago';
+                })() %>
+                </span>
+              </div>
+            </div>
+            <div class="bookmark">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
+                ></path>
+              </svg>
+            </div>
           </div>
 
-          <div class="skills-container">
-            <% job.skillsRequired.forEach(skill => { %>
-            <span class="skill-tag"><%= skill %></span>
+          <div class="job-details">
+            <strong>Budget: </strong>₹<%= job.budget %> <b>·</b>
+            <strong>Deadline: </strong> <%= new
+            Date(job.deadline).toDateString() %>
+          </div>
+
+          <div class="description"><%= job.desc %></div>
+
+          <div class="tags">
+            <% job.skillsRequired.forEach((skill)=>{ %>
+            <span class="tag"><%= skill %></span>
             <% }) %>
           </div>
-
-          <div class="deadline">
-            Deadline: <%= new Date(job.deadline).toLocaleDateString() %>
-          </div>
-
-          <button
-            class="details-btn"
-            onclick="showJobDetails('<%= job._id %>')"
-          >
-            View Details
-          </button>
+          <button class="apply-button">Apply</button>
         </div>
         <% }) %>
       </div>
@@ -90,7 +121,7 @@
         document.getElementById("modal-budget").textContent = `₹${job.budget}`;
         document.getElementById("modal-deadline").textContent = new Date(
           job.deadline
-        ).toLocaleDateString();
+        ).toDateString()
         document.getElementById("modal-description").textContent = job.desc;
 
         // Update skills

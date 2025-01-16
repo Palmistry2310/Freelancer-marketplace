@@ -1,7 +1,7 @@
 const Job = require("../models/Job");
 
 exports.getAllJobs = async (req, res) => {
-  const jobs = await Job.find();
+  const jobs = await Job.find().sort({deadline: -1});
   res.render("job/jobList", { jobs, token: req.token });
 };
 

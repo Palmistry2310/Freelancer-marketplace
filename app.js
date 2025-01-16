@@ -42,6 +42,7 @@ app.get("/", (req, res) => {
 app.use("/", authRoutes);
 app.use("/jobs", jobRoutes);
 
+
 app.get("/logout", (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
@@ -50,6 +51,7 @@ app.get("/logout", (req, res) => {
   });
   res.redirect("/login");
 });
+
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);

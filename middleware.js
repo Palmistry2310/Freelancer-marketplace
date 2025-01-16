@@ -30,7 +30,21 @@ const verifyJWT = (req, res, next) => {
   }
 };
 
+const getUserFromJwt = (req, res, next) => {
+  const token = req.cookies.token;
+  try {
+    if (token) {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = decoded;
+      next();
+    }
+  } catch {
+    res.status(403).json({ message: "Invalid JWT token" });
+  }
+};
+
 module.exports = {
   getTokenFromCookie,
   verifyJWT,
+  getUserFromJwt,
 };

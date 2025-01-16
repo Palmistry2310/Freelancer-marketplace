@@ -7,6 +7,7 @@ const jobSchema = new mongoose.Schema(
     skillsRequired: [String],
     deadline: { type: Date, required: true },
     budget: { type: Number, required: true },
+    userId:{type:mongoose.Schema.Types.ObjectId, ref:"User", required:true}
   },
   { timestamps: true }
 );

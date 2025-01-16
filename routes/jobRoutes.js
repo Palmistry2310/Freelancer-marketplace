@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const jobController = require("../controllers/jobController");
-const { getTokenFromCookie, verifyJWT } = require("../middleware");
+const { getTokenFromCookie, verifyJWT, getUserFromJwt, } = require("../middleware");
 
 router.get("/", jobController.getAllJobs);
 
@@ -15,5 +15,7 @@ router.get("/create", (req, res) => {
 });
 
 router.post("/create",verifyJWT, jobController.createJob);
+
+router.get("/myjobs",getUserFromJwt,jobController.myJobs);
 
 module.exports = router;

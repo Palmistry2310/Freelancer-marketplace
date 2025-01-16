@@ -79,47 +79,5 @@
         <% }) %>
       </div>
     </main>
-    
-    <script>
-       const jobsData = <%- JSON.stringify(jobs) %>;
-
-      function showJobDetails(jobId) {
-        const job = jobsData.find((j) => j._id === jobId);
-        if (!job) return;
-
-        // Update modal content
-        document.getElementById("modal-title").textContent = job.title;
-        document.getElementById("modal-budget").textContent = `₹${job.budget}`;
-        document.getElementById("modal-deadline").textContent = new Date(
-          job.deadline
-        ).toDateString()
-        document.getElementById("modal-description").textContent = job.desc;
-
-        // Update skills
-        const skillsContainer = document.getElementById("modal-skills");
-        skillsContainer.innerHTML = job.skillsRequired?.length
-          ? job.skillsRequired
-              .map((skill) => `<span class="skill-tag">${skill}</span>`)
-              .join("")
-          : "No skills specified";
-
-        // Show modal
-        document.getElementById("modal-overlay").classList.remove("hidden");
-        document.body.style.overflow = "hidden";
-      }
-
-      function hideJobDetails() {
-        document.getElementById("modal-overlay").classList.add("hidden");
-        document.body.style.overflow = "auto";
-      }
-
-      document
-        .getElementById("modal-overlay")
-        .addEventListener("click", (e) => {
-          if (e.target === e.currentTarget) {
-            hideJobDetails();
-          }
-        });
-    </script>
   </body>
 </html>

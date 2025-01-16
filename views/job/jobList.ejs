@@ -79,7 +79,7 @@
     </div>
 
     <script>
-      const jobsData = JSON.stringify(jobs);
+       const jobsData = <%- JSON.stringify(jobs) %>;
 
       function showJobDetails(jobId) {
         const job = jobsData.find((j) => j._id === jobId);

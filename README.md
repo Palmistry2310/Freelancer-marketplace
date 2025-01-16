@@ -86,26 +86,26 @@ _None_
 ```json
 [
   {
-    _id: new ObjectId('6788ff1e772022b3a6495dec'),
-    title: 'NEW JOB',
-    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with ",
-    skillsRequired: [ 'ejs', 'nextjs', 'mern' ],
-    deadline: 2025-02-01T00:00:00.000Z,
-    budget: 5000,
-    createdAt: 2025-01-16T12:44:14.536Z,
-    updatedAt: 2025-01-16T12:44:14.536Z,
-    __v: 0
+    "_id": "new ObjectId('6788ff1e772022b3a6495dec')",
+    "title": "NEW JOB",
+    "desc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with ",
+    "skillsRequired": [ "ejs", "nextjs", "mern" ],
+    "deadline": "2025-02-01T00:00:00.000Z",
+    "budget": 5000,
+    "createdAt": "2025-01-16T12:44:14.536Z",
+    "updatedAt": "2025-01-16T12:44:14.536Z",
+    "__v": 0
   },
   {
-    _id: new ObjectId('6788ff1e772022b3a6495dec'),
-    title: 'NEW JOB',
-    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with ",
-    skillsRequired: [ 'ejs', 'nextjs', 'mern' ],
-    deadline: 2025-02-01T00:00:00.000Z,
-    budget: 5000,
-    createdAt: 2025-01-16T12:44:14.536Z,
-    updatedAt: 2025-01-16T12:44:14.536Z,
-    __v: 0
+    "_id": "new ObjectId('6788ff1e772022b3a6495dec')",
+    "title": "NEW JOB",
+    "desc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with ",
+    "skillsRequired": [ "ejs", "nextjs", "mern" ],
+    "deadline": "2025-02-01T00:00:00.000Z",
+    "budget": 5000,
+    "createdAt": "2025-01-16T12:44:14.536Z",
+    "updatedAt": "2025-01-16T12:44:14.536Z",
+    "__v": 0
   }
 ]
 ```
@@ -119,11 +119,11 @@ _None_
 **Request Body:**
 ```json
 {
-  title: 'Software developer',
-  desc: 'Solve issues in full stack web app and write neat and clean code',
-  budget: '91000',
-  deadline: '2025-07-14',
-  skillsRequired: 'MERN'
+  "title": "Software developer",
+  "desc": "Solve issues in full stack web app and write neat and clean code",
+  "budget": "91000",
+  "deadline": "2025-07-14",
+  "skillsRequired": "MERN"
 }
 ```
 
@@ -136,10 +136,10 @@ _None_
 **Request Body:**
 ```json
 {
-    name: 'Donald Trump',
-    email: 'donaldtrump@usa.com',
-    password: 'starpresident2021',
-    userType: 'freelancer'
+    "name": "Donald Trump",
+    "email": "donaldtrump@usa.com",
+    "password": "starpresident2021",
+    "userType": "freelancer"
 }
 ```
 
@@ -153,16 +153,16 @@ _None_
 **Request Body:**
 ```json
 {
-    email: 'donaldtrump@usa.com',
-    password: 'starpresident2021',
+    "email": "donaldtrump@usa.com",
+    "password": "starpresident2021",
 }
 ```
 
 **Example response **
 ```json
 {
-    message: 'Logged in sucessfully',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+    "message": "Logged in sucessfully",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
 }
 ```
 

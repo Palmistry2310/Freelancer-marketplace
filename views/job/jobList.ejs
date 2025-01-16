@@ -79,36 +79,7 @@
         <% }) %>
       </div>
     </main>
-
-    <!-- Modal Overlay -->
-    <div id="modal-overlay" class="modal-overlay hidden">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 id="modal-title"></h2>
-          <button class="close-btn" onclick="hideJobDetails()">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="detail-row">
-            <span class="detail-label">Budget:</span>
-            <span id="modal-budget" class="budget"></span>
-          </div>
-
-          <div class="detail-row">
-            <span class="detail-label">Skills Required:</span>
-            <div id="modal-skills" class="skills-container"></div>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Deadline:</span>
-            <span id="modal-deadline"></span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Description:</span>
-            <p id="modal-description"></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    
     <script>
        const jobsData = <%- JSON.stringify(jobs) %>;
 

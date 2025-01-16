@@ -5,7 +5,12 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 
 const port = process.env.PORT; //access the variable using process.env
-const mongoUrl = process.env.MONGO_URL;
+let mongoUrl = "";
+if (process.env.NODE_ENV === "production"){
+  mongoUrl = process.env.MONGO_ATLAS;
+}else{
+  mongoUrl = process.env.MONGO_URL;
+}
 
 const authRoutes = require("./routes/authRoutes");
 const jobRoutes = require("./routes/jobRoutes");

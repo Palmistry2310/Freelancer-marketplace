@@ -9,10 +9,16 @@
       <a href="/jobs/create">Post Job</a>
     </div>
     <div>
+      <% if (token) { %>
+      <button class="logout-btn" onclick="window.location.href='/logout'">
+        Logout
+      </button>
+      <% }else{ %>
       <button class="sign-up-btn" onclick="location.href='/signup'">
         Sign up
       </button>
       <button class="login-btn" onclick="location.href='/login'">Log in</button>
+      <% } %>
     </div>
   </div>
 </nav>

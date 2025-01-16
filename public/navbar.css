@@ -66,7 +66,7 @@ body {
     background: white;
     border: none;
     padding: 0.625rem 1.25rem;
-    border-radius: 1rem;
+    border-radius:50px;
     font-size: 0.9375rem;
     color: var(--primary-color);
     cursor: pointer;
@@ -83,13 +83,26 @@ body {
     background: white;
     border: none;
     padding: 0.625rem 1.25rem;
-    border-radius: 1rem;
+    border-radius:50px;
     font-size: 0.9375rem;
     color: var(--primary-color);
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     transition: all ease-in-out 0.1s;
 
+}
+
+.logout-btn {
+    background: rgb(248, 54, 54);
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius:50px;
+    font-size: 0.9375rem;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all ease-in-out 0.1s;
+    text-decoration: none;
 }
 
 .login-btn:hover{

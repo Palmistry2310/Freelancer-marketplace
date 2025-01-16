@@ -1,0 +1,97 @@
+:root {
+    --primary-color: #2D3B4E;
+    --secondary-color: #F5F7FA;
+    --accent-color: #007AFF;
+    --background-color: #F8FAFC;
+    --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "DM Sans", sans-serif;
+}
+
+.navbar {
+    padding: 1.5rem 2rem;
+    background: transparent;
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.brandname {
+    text-decoration: none;
+    color: #232323;
+    font-size: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 0.9375rem;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.sign-up-btn {
+    background: white;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: 1rem;
+    font-size: 0.9375rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-right: 10px;
+    transition: all ease-in-out 0.1s;
+}
+
+.sign-up-btn:hover{
+    background-color: #e2e8f0;
+}
+
+.login-btn {
+    background: white;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: 1rem;
+    font-size: 0.9375rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all ease-in-out 0.1s;
+
+}
+
+.login-btn:hover{
+    background-color: #e2e8f0;
+}

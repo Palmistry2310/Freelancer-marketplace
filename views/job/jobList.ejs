@@ -1,118 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Available Jobs | earnwave</title>
-    <link rel="stylesheet" href="/public/joblist.css">
-</head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-brand">earnwave</div>
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/jobs" class="active">Jobs</a>
-            <a href="/jobs/create">Post Job</a>
-            <a href="/signup">Sign up</a>
-        </div>
-    </nav>
+    <link rel="stylesheet" href="/public/navbar.css" />
+    <link rel="stylesheet" href="/public/joblist.css" />
+    <!-- Google fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Handlee&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <%- include('../../components/navbar.ejs') %>
 
     <!-- Main Content -->
     <main>
-        <h1>Available Jobs</h1>
-        
-        <div class="jobs-grid">
-            <% jobs.forEach(job => { %>
-                <div class="job-card">
-                    <div class="job-header">
-                        <h2><%= job.title %></h2>
-                        <span class="budget">₹<%= job.budget %></span>
-                    </div>
-        
-                    <div class="skills-container">
-                        <% job.skillsRequired.forEach(skill => { %>
-                            <span class="skill-tag"><%= skill %></span>
-                        <% }) %>
-                    </div>
-        
-                    <div class="deadline">
-                        Deadline: <%= new Date(job.deadline).toLocaleDateString() %>
-                    </div>
-        
-                    <button class="details-btn" onclick="showJobDetails('<%= job._id %>')">View Details</button>
-                </div>
+      <h1>Available Jobs</h1>
+
+      <div class="jobs-grid">
+        <% jobs.forEach(job => { %>
+        <div class="job-card">
+          <div class="job-header">
+            <h2><%= job.title %></h2>
+            <span class="budget">₹<%= job.budget %></span>
+          </div>
+
+          <div class="skills-container">
+            <% job.skillsRequired.forEach(skill => { %>
+            <span class="skill-tag"><%= skill %></span>
             <% }) %>
+          </div>
+
+          <div class="deadline">
+            Deadline: <%= new Date(job.deadline).toLocaleDateString() %>
+          </div>
+
+          <button
+            class="details-btn"
+            onclick="showJobDetails('<%= job._id %>')"
+          >
+            View Details
+          </button>
         </div>
-        
+        <% }) %>
+      </div>
     </main>
 
     <!-- Modal Overlay -->
     <div id="modal-overlay" class="modal-overlay hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modal-title"></h2>
-                <button class="close-btn" onclick="hideJobDetails()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="detail-row">
-                    <span class="detail-label">Budget:</span>
-                    <span id="modal-budget" class="budget"></span>
-                </div>
-                
-                <div class="detail-row">
-                    <span class="detail-label">Skills Required:</span>
-                    <div id="modal-skills" class="skills-container"></div>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Deadline:</span>
-                    <span id="modal-deadline"></span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Description:</span>
-                    <p id="modal-description"></p>
-                </div>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modal-title"></h2>
+          <button class="close-btn" onclick="hideJobDetails()">&times;</button>
         </div>
+        <div class="modal-body">
+          <div class="detail-row">
+            <span class="detail-label">Budget:</span>
+            <span id="modal-budget" class="budget"></span>
+          </div>
+
+          <div class="detail-row">
+            <span class="detail-label">Skills Required:</span>
+            <div id="modal-skills" class="skills-container"></div>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Deadline:</span>
+            <span id="modal-deadline"></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Description:</span>
+            <p id="modal-description"></p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-       const jobsData =  <%- JSON.stringify(jobs) %>;
+      const jobsData = JSON.stringify(jobs);
 
-function showJobDetails(jobId) {
-    const job = jobsData.find(j => j._id === jobId);
-    if (!job) return;
+      function showJobDetails(jobId) {
+        const job = jobsData.find((j) => j._id === jobId);
+        if (!job) return;
 
-    // Update modal content
-    document.getElementById('modal-title').textContent = job.title;
-    document.getElementById('modal-budget').textContent = `₹${job.budget}`;
-    document.getElementById('modal-deadline').textContent = new Date(job.deadline).toLocaleDateString();
-    document.getElementById('modal-description').textContent = job.desc;
+        // Update modal content
+        document.getElementById("modal-title").textContent = job.title;
+        document.getElementById("modal-budget").textContent = `₹${job.budget}`;
+        document.getElementById("modal-deadline").textContent = new Date(
+          job.deadline
+        ).toLocaleDateString();
+        document.getElementById("modal-description").textContent = job.desc;
 
-    // Update skills
-    const skillsContainer = document.getElementById('modal-skills');
-    skillsContainer.innerHTML = job.skillsRequired?.length
-        ? job.skillsRequired.map(skill => `<span class="skill-tag">${skill}</span>`).join('')
-        : 'No skills specified';
+        // Update skills
+        const skillsContainer = document.getElementById("modal-skills");
+        skillsContainer.innerHTML = job.skillsRequired?.length
+          ? job.skillsRequired
+              .map((skill) => `<span class="skill-tag">${skill}</span>`)
+              .join("")
+          : "No skills specified";
 
-    // Show modal
-    document.getElementById('modal-overlay').classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-}
+        // Show modal
+        document.getElementById("modal-overlay").classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
 
-function hideJobDetails() {
-    document.getElementById('modal-overlay').classList.add('hidden');
-    document.body.style.overflow = 'auto';
-}
+      function hideJobDetails() {
+        document.getElementById("modal-overlay").classList.add("hidden");
+        document.body.style.overflow = "auto";
+      }
 
-document.getElementById('modal-overlay').addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) {
-        hideJobDetails();
-    }
-});
-
+      document
+        .getElementById("modal-overlay")
+        .addEventListener("click", (e) => {
+          if (e.target === e.currentTarget) {
+            hideJobDetails();
+          }
+        });
     </script>
-</body>
+  </body>
 </html>
-
-

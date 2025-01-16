@@ -1,74 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>earnwave - Connect. Work. Earn</title>
-    <link rel="stylesheet" href="/public/homepage.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/public/homepage.css" />
+    <link rel="stylesheet" href="/public/navbar.css" />
+    <!-- Google fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Handlee&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="background">
-        <div class="curved-shape left"></div>
-        <div class="curved-shape right"></div>
-        
-        <nav class="navbar">
-            <div class="nav-content">
-                <div class="logo">
-                    <span>earnwave</span>
-                </div>
-                <div class="nav-links">
-                    <a href="/">Home</a>
-                    <a href="/jobs">Jobs</a>
-                    <a href="/jobs/create">Post Job</a>
-                </div>
-                <div>
-                <button class="sign-up-btn" onclick="location.href='/signup'"> Sign up</button>
-                <button class="login-btn" onclick="location.href='/login'"> Log in</button></div>
+      <div class="curved-shape left"></div>
+      <div class="curved-shape right"></div>
+
+      <%- include('../components/navbar.ejs') %>
+
+      <main>
+        <section class="hero">
+          <h1>Connect. Work. Earn</h1>
+          <p class="subtitle">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
+            perferendis adipisci molestias quaerat praesentium delectus.
+          </p>
+          <div class="progress-dots">
+            <span class="dot"></span>
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </section>
+
+        <section class="cards-container">
+          <div class="card earnings-card">
+            <h3>Your earnings</h3>
+            <div class="amount">$30.00</div>
+            <div class="payout-info">
+              <span>Next payout in:</span>
+              <span>10,550 pts</span>
             </div>
-        </nav>
+            <canvas id="earningsGraph"></canvas>
+          </div>
 
-        <main>
-            <section class="hero">
-                <h1>Connect. Work. Earn</h1>
-                <p class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus perferendis adipisci molestias quaerat praesentium delectus.</p>
-                <div class="progress-dots">
-                    <span class="dot"></span>
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-            </section>
+          <div class="card sources-card">
+            <div class="sources-header">
+              <h3>Connect sources</h3>
+            </div>
+          </div>
 
-            <section class="cards-container">
-                <div class="card earnings-card">
-                    <h3>Your earnings</h3>
-                    <div class="amount">$30.00</div>
-                    <div class="payout-info">
-                        <span>Next payout in:</span>
-                        <span>10,550 pts</span>
-                    </div>
-                    <canvas id="earningsGraph"></canvas>
-                </div>
-
-                <div class="card sources-card">
-                    <div class="sources-header">
-                        <h3>Connect sources</h3>
-                        
-                    </div>
-                    
-                </div>
-
-                <div class="card learn-card">
-                   
-                    <div class="learn-more">
-                        <span>Lorem ipsum dolor sit, amet consectetur adipisicing.</span>
-                    </div>
-                </div>
-            </section>
-        </main>
+          <div class="card learn-card">
+            <div class="learn-more">
+              <span>Lorem ipsum dolor sit, amet consectetur adipisicing.</span>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
-

@@ -28,6 +28,7 @@ exports.createJob = async (req, res) => {
 
 
 exports.myJobs=async (req,res)=>{
+  
 
   try{
     const myjobs= await Job.find({userId:req.user.userId})
@@ -71,7 +72,8 @@ exports.updateJob = async (req, res) => {
 
 exports.deleteJob = async (req, res) => {
   try {
-    const jobId = req.body 
+    const {jobId} = req.body 
+    console.log(jobId)
 
     if (!jobId) {
       return res.status(400).json({ message: "Job ID is required" });

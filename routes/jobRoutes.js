@@ -17,10 +17,11 @@ router.get("/create", (req, res) => {
 router.post("/create",verifyJWT, jobController.createJob);
 
 
-router.delete("/deletemyjob",verifyJWT,jobController.deleteJob);
+router.delete("/deletemyjob",jobController.deleteJob);
 
 
 router.get("/myjobs",getUserFromJwt,jobController.myJobs);
+
 
 router.put("/editmyjob", jobController.updateJob);
 

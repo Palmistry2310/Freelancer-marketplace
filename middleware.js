@@ -38,6 +38,9 @@ const getUserFromJwt = (req, res, next) => {
       req.user = decoded;
       next();
     }
+    if (req.token === undefined) {
+      res.render("401.ejs", { token: req.token });
+    }
   } catch {
     res.status(403).json({ message: "Invalid JWT token" });
   }

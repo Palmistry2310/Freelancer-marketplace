@@ -19,9 +19,8 @@
     <main>
       <h1>My jobs</h1>
       <div class="jobs-grid">
-        <% myjobs.forEach(job => { %>
-
-        <div class="job-card">
+        <% myjobs.forEach((job, index) => { %>
+        <div class="job-card" id="jobcard-<%=index%>">
           <div class="job-header">
             <div class="job-title-section">
               <div class="job-icon">
@@ -54,8 +53,11 @@
                 />
               </button>
               <div class="dropdown-menu">
-                <button onclick="openEditModal(job._id)">Edit</button>
-                <button onclick="openDeleteModal()">Delete</button>
+                <!-- <button onclick="openEditModal('jobcard-<%=index%>')">Edit</button> -->
+                <button data-id="<%= job._id %>" onclick="openEditModal(this)">
+                  Edit
+                </button>
+                <button data-id="<%=job._id%>" onclick="openDeleteModal(this)">Delete</button>
               </div>
             </div>
           </div>
@@ -76,28 +78,26 @@
         </div>
 
         <!-- Edit Modal -->
-        <div id="editModal" class="modal">
+        <div class="modal" id="jobcardmodal-<%=index%>">
           <div class="modal-content">
             <h2>Edit Job</h2>
-            <form action="/myjobs/edit" method="POST" id="editForm">
+
+            <form id="updatedForm" action="#">
               <div class="form-group">
                 <label for="editTitle">Job Title</label>
                 <input
                   type="text"
                   id="editTitle"
                   name="title"
-                  value="<%= job.title %>"
+                  value=""
                   required
                 />
               </div>
-              
+
               <div class="form-group">
                 <label for="editDescription">Job Description</label>
-                <textarea 
-                id="editDescription" 
-                name="desc"
-                required
-                value = "<%= job.desc %>" ></textarea>
+                <textarea id="editDescription" name="desc" required></textarea
+                >
               </div>
               <div class="form-group">
                 <label for="editbudget">Budget</label>
@@ -105,34 +105,37 @@
                   type="number"
                   id="editbudget"
                   name="budget"
-                  value="<%= job.budget %>"
+                  value=""
                   required
                 />
               </div>
 
               <div class="form-group">
                 <label for="editdeadline">Deadline</label>
-                <input 
-                type="date" id="editdeadline" 
-                name="deadline" 
-                required 
-                value="<%= new Date(job.deadline).toLocaleString() %>" />
+                <input
+                  type="date"
+                  id="editdeadline"
+                  name="deadline"
+                  required
+                  value=""
+                />
               </div>
+              <!-- <%= new Date(job.deadline).toISOString().substr(0, 10);%> -->
 
               <div class="form-group">
                 <label for="editskills-input">Required Skills</label>
-                <input
-                  type="text"
-                  id="editskills-input"
-                  name="skillsRequired"
-                  required
-                  value="<% job.skillsRequired[0] %>"
-                />
+                <input type="text" id="editskills-input" name="skillsRequired"
+                value="" />
               </div>
 
               <div class="modal-buttons">
-                <button type="button" onclick="closeEditModal()">Cancel</button>
-                <button type="submit">Update</button>
+                <button
+                  type="button"
+                  onclick="closeEditModal('jobcard-<%=index%>')"
+                >
+                  Cancel
+                </button>
+                <button type="submit" id="update_btn"  data_info="" onclick="handleUpdate(this)">Update</button>
               </div>
             </form>
           </div>
@@ -145,69 +148,141 @@
             <p>Are you sure you want to delete this job posting?</p>
             <div class="modal-buttons">
               <button onclick="closeDeleteModal()">Cancel</button>
-              <button class="delete-btn" onclick="deleteJob()">Delete</button>
+              <button class="delete-btn" onclick="deleteJob('<%= job.id %>')">
+                Delete
+              </button>
             </div>
           </div>
         </div>
 
         <% }) %>
       </div>
-
-      <script>
-        // Toggle dropdown menu
-        function toggleMenu(button) {
-          const dropdown = button.nextElementSibling;
-          dropdown.classList.toggle("active");
-
-          // Close dropdown when clicking outside
-          document.addEventListener("click", function closeDropdown(e) {
-            if (!button.contains(e.target) && !dropdown.contains(e.target)) {
-              dropdown.classList.remove("active");
-              document.removeEventListener("click", closeDropdown);
-            }
-          });
-        }
-
-        // Modal functions
-        function openEditModal() {
-          document.getElementById("editModal").classList.add("active");
-        }
-
-        function closeEditModal() {
-          document.getElementById("editModal").classList.remove("active");
-        }
-
-        function openDeleteModal() {
-          document.getElementById("deleteModal").classList.add("active");
-        }
-
-        function closeDeleteModal() {
-          document.getElementById("deleteModal").classList.remove("active");
-        }
-
-        // Form submission handler
-        document
-          .getElementById("editForm")
-          .addEventListener("submit", function (e) {
-            e.preventDefault();
-            // Add your update logic here
-            closeEditModal();
-          });
-
-        // Delete handler
-        function deleteJob() {
-          // Add your delete logic here
-          closeDeleteModal();
-        }
-
-        async function updateJob(e){
-          e.preventDefault()
-          const response= await fetch("",{method:"post",
-            headers:{"content-type":"application/json",Authorization:`Bearer <%=token%>`}
-          })
-        }
-      </script>
-      
     </main>
+    <script>
+
+      const jobsData = <%- JSON.stringify(myjobs)%>;
+
+      function handleUpdate(button)
+    {
+
+      document.getElementById("updatedForm").addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const jobId=button.getAttribute("data_info")
+          console.log(jobId)
+          const data = {
+            jobId,
+            title: document.getElementById("editTitle").value,
+            desc: document.getElementById("editDescription").value,
+            budget: document.getElementById("editbudget").value,
+            deadline: document.getElementById("editdeadline").value,
+            skillsRequired: document.getElementById("editskills-input").value,
+          };
+          console.log(data);
+
+          const response = await fetch("/jobs/editmyjob",{
+            method:"PUT",
+            headers:{"content-type":"application/json"},
+            body:JSON.stringify(data)
+          })
+
+          const result= await response.json()
+          
+          
+          if (response.ok){
+            alert(result.message)
+            location.reload()
+          }else{
+            alert(result.message)
+          }
+          
+        });
+
+    }
+
+      // Toggle dropdown menu
+      function toggleMenu(button) {
+        const dropdown = button.nextElementSibling;
+        dropdown.classList.toggle("active");
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function closeDropdown(e) {
+          if (!button.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove("active");
+            document.removeEventListener("click", closeDropdown);
+          }
+        });
+      }
+
+
+      // Modal functions
+      function openEditModal(button) {
+
+
+        const jobId = button.getAttribute("data-id");
+        console.log(jobId); 
+
+        const job = jobsData.find(j => j._id === jobId);
+        if (!job) return;
+
+
+        //updaing modals content
+        document.getElementById("editTitle").value = job.title;
+        document.getElementById("editbudget").value = job.budget;
+        document.getElementById("editdeadline").value =new Date(job.deadline).toISOString().substr(0, 10);
+        document.getElementById("editDescription").textContent =job.desc;
+        document.getElementById("editskills-input").value=job.skillsRequired;
+
+        document.getElementById("update_btn").setAttribute("data_info",job._id)
+
+
+        document.querySelector(".modal").classList.add("active");
+      }
+
+      function closeEditModal(jobCardNumber) {
+        let jobCardmodal = jobCardNumber.split("-")[1];
+        document
+          .getElementById(`jobcardmodal-${jobCardmodal}`)
+          .classList.remove("active");
+      }
+
+      function openDeleteModal(button) {
+        const id=button.getAttribute("data-id")
+        console.log(id,"from delete")
+
+        document.getElementById("deleteModal").classList.add("active");
+      }
+
+      function closeDeleteModal() {
+        document.getElementById("deleteModal").classList.remove("active");
+      }
+
+      // Delete handler
+      function deleteJob(jobId) {
+        closeDeleteModal();
+      }
+
+      // const data={
+      //   jobId,
+      //   title:document.getElementById("editTitle").value,
+      //   desc:document.getElementById("editDescription").value,
+      //   deadline:document.getElementById("editdeadline").value,
+      //   budget:document.getElementById("editbudget").value,
+      //   skillsRequired:document.getElementById("editskills-input").value
+      // }
+
+      // const form = document.getElementById("editForm");
+      // function handleSubmit(e) {
+      //   console.log("updat called");
+      //   e.preventDefault();
+      // }
+
+      // form.addEventListener("submit", (e) => {
+      //   e.preventDefault();
+      //   console.log("submited");
+      //   // const formData = new FormData(form)
+      //   // const data = Object.fromEntries(formData.entriesO())
+      //   // console.log(data)
+      // });
+    </script>
   </body>
 </html>

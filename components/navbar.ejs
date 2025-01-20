@@ -3,24 +3,29 @@
     <div class="logo">
       <a href="/" class="brandname">EarnWave</a>
     </div>
-    <div class="nav-links">
+    <div class="hamburger-menu" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-links" id="navLinks">
       <a href="/">Home</a>
       <a href="/jobs">Jobs</a>
       <a href="/jobs/create">Post Job</a>
       <a href="/jobs/myjobs">My Jobs</a>
-      
-    </div>
-    <div>
       <% if (token) { %>
-      <button class="logout-btn" onclick="window.location.href='/logout'">
-        Logout
-      </button>
-      <% }else{ %>
-      <button class="sign-up-btn" onclick="location.href='/signup'">
-        Sign up
-      </button>
+      <a class="logout-btn" href="/logout">Logout</a>
+      <% } else { %>
+      <button class="sign-up-btn" onclick="location.href='/signup'">Sign up</button>
       <button class="login-btn" onclick="location.href='/login'">Log in</button>
       <% } %>
     </div>
   </div>
 </nav>
+
+<script>
+  function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('active');
+  }
+</script>

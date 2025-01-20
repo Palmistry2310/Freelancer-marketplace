@@ -208,12 +208,14 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px;
 }
 
-.icon img {
-    width: 24px;
-    height: 24px;
-    filter: brightness(0) invert(1);
+.inner-icon{
+    background: white;
+    height: 100%;
+    width: 100%;
+    border-radius: 2px;
 }
 
 .title-section h1 {

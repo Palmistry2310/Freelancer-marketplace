@@ -264,6 +264,7 @@ body {
 
 .cards-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
     position: relative;
@@ -296,3 +297,170 @@ body {
         z-index: 1;
   }
   
+
+  :root {
+    --primary-color: #2d3b4e;
+    --secondary-color: #f5f7fa;
+    --accent-color: #007aff;
+    --background-color: #f8fafc;
+    --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+  
+  .background {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  
+  .curvedShape {
+    position: absolute;
+    background-color: #e2e8f0;
+    width: 77%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .curvedShapeLeft {
+    composes: curvedShape;
+    left: -50%;
+    border-radius: 0 100% 0 0;
+  }
+  
+  .curvedShapeRight {
+    composes: curvedShape;
+    right: -50%;
+    border-radius: 100% 0 0 0;
+  }
+  
+  .hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .heroTitle {
+    font-size: 4.5rem;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #2d3b4e 0%, #3d4b5e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .subtitle {
+    font-size: 1.125rem;
+    color: #64748b;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.5;
+  }
+  
+  .progressDots {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  .dot {
+    width: 8px;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 50%;
+  }
+  
+  .activeDot {
+    composes: dot;
+    background: var(--accent-color);
+  }
+  
+  .cardsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    gap: 20px;
+    padding: 100px 0;
+  }
+  
+  .card {
+    background: white;
+    padding: 20px;
+    border-radius: 47px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: absolute;
+    width: 310px;
+    transition: transform 0.3s ease;
+  }
+  
+  .cardLeft {
+    composes: card;
+    transform: translateX(-300px) translateY(-65px) scale(0.8);
+    z-index: 1;
+  }
+  
+  .cardCenter {
+    composes: card;
+    transform: translateY(-30px) scale(1);
+    z-index: 2;
+  }
+  
+  .cardRight {
+    composes: card;
+    transform: translateX(300px) translateY(-65px) scale(0.8);
+    z-index: 1;
+  }
+  
+  .cardTitle {
+    color: #64748b;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    text-align: center;
+  }
+  
+  @media (max-width: 1024px) {
+    .heroTitle {
+      font-size: 3.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .heroTitle {
+      font-size: 2.5rem;
+    }
+  
+    .subtitle {
+      font-size: 1rem;
+    }
+  
+    .cardsContainer {
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 0;
+    }
+  
+    .card {
+      position: static;
+      transform: none !important;
+      margin-bottom: 20px;
+      width: 90%;
+      max-width: 310px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .heroTitle {
+      font-size: 2rem;
+    }
+  
+    .card {
+      padding: 15px;
+    }
+  
+    .cardTitle {
+      font-size: 24px;
+    }
+  }

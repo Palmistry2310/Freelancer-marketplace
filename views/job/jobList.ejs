@@ -21,7 +21,7 @@
       <h1>Available Jobs</h1>
 
       <div class="jobs-grid">
-        <% jobs.forEach(job => { %>
+        <% jobs.forEach((job, index) => { %>
         <div class="card">
           <div class="card-header">
             <div class="header-left">
@@ -39,6 +39,8 @@
                     return Math.floor(diffInSeconds / 86400) + ' days ago';
                 })() %>
                 </span>
+                - 
+                <span><%= authors[index] %></span>
               </div>
             </div>
             <div class="bookmark">

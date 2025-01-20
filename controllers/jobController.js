@@ -1,8 +1,17 @@
 const Job = require("../models/Job");
+const User = require("../models/User");
 
 exports.getAllJobs = async (req, res) => {
-  const jobs = await Job.find().sort({deadline: -1});
-  res.render("job/jobList", { jobs, token: req.token });
+  const jobs = await Job.find().sort({ deadline: -1 });
+
+  const authors = await Promise.all(
+    jobs.map(async (job) => {
+      const user = await User.findById(job.userId); // Fetch user by userId
+      return user ? user.name : "Unknown Author"; // Return username or fallback
+    })
+  );
+  console.log("After promise");
+  res.render("job/jobList", { jobs, authors, token: req.token });
 };
 
 exports.createJob = async (req, res) => {
@@ -15,7 +24,7 @@ exports.createJob = async (req, res) => {
       skillsRequired: skillArray,
       deadline,
       budget,
-      userId:req.user.userId
+      userId: req.user.userId,
     });
     await newJob.save();
     res.status(200).json({ message: "Job Posted", token: req.token });
@@ -26,34 +35,31 @@ exports.createJob = async (req, res) => {
   }
 };
 
-
-exports.myJobs=async (req,res)=>{
-  
-
-  try{
-    const myjobs= await Job.find({userId:req.user.userId})
-    res.render("job/myJobs",{myjobs,token:req.token})
-  }catch{
-    res.status(500).json({message:"unable to fetch!"})
+exports.myJobs = async (req, res) => {
+  try {
+    const myjobs = await Job.find({ userId: req.user.userId });
+    res.render("job/myJobs", { myjobs, token: req.token });
+  } catch {
+    res.status(500).json({ message: "unable to fetch!" });
   }
 };
 
 exports.updateJob = async (req, res) => {
   try {
-    console.log(req.body)
-    const { jobId, title, desc,skillsRequired,deadline,budget } = req.body; 
+    console.log(req.body);
+    const { jobId, title, desc, skillsRequired, deadline, budget } = req.body;
     const skillArray = skillsRequired.split(",").map((skill) => skill.trim());
-    
-    console.log(jobId)
+
+    console.log(jobId);
 
     if (!jobId) {
       return res.status(400).json({ message: "Job ID is required" });
     }
 
-    const updatedJob=await Job.findByIdAndUpdate(
+    const updatedJob = await Job.findByIdAndUpdate(
       jobId,
-      { title, desc, budget,skillsRequired: skillArray,deadline},
-      { new: true } 
+      { title, desc, budget, skillsRequired: skillArray, deadline },
+      { new: true }
     );
 
     if (!updatedJob) {
@@ -72,8 +78,8 @@ exports.updateJob = async (req, res) => {
 
 exports.deleteJob = async (req, res) => {
   try {
-    const {jobId} = req.body 
-    console.log(jobId)
+    const { jobId } = req.body;
+    console.log(jobId);
 
     if (!jobId) {
       return res.status(400).json({ message: "Job ID is required" });

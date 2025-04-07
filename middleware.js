@@ -14,19 +14,19 @@ const verifyJWT = (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
-      res.status(401).json({ message: "Authorization headers missing" });
+      return res.status(401).json({ message: "Authorization headers missing" });
     }
 
-    const token = authHeader.split("Bearer")[1].trim();
-    if (!token) {
-      res.status(401).json({ message: "Invalid token" });
+    const token = authHeader.split("Bearer")[1];
+    if (!token || !token.trim()) {
+      return res.status(401).json({ message: "Invalid token" });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token.trim(), process.env.JWT_SECRET);
     req.user = decoded;
     next();
   } catch (err) {
-    res.status(403).json({ message: "Invalid JWT token" });
+    return res.status(403).json({ message: "Invalid JWT token" });
   }
 };
 
